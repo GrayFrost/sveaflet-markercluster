@@ -29,9 +29,14 @@ description: Examples about how to use Sveaflet-MarkerCluster
 		/>
 		<MarkerCluster>
 			{#each addressPoints as a}
-				{@const title = a[2]}
-				<Marker latlng={[a[0], a[1]]}>
-					<Popup>{title}</Popup>
+				{@const title = String(a[2])}
+				<Marker
+					latlng={[Number(a[0]), Number(a[1])]}
+					options={{
+						title,
+					}}
+				>
+					<Popup options={{ content: title }}></Popup>
 				</Marker>
 			{/each}
 		</MarkerCluster>
