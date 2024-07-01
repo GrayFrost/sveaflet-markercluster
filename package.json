@@ -1,0 +1,94 @@
+{
+	"name": "sveaflet-markercluster",
+	"version": "0.0.1",
+	"author": {
+		"name": "GrayFrost",
+		"email": "garyfrost4321@gmail.com",
+		"url": "https://github.com/GrayFrost"
+	},
+	"bugs": "https://github.com/GrayFrost/sveaflet-markercluster/issues",
+	"homepage": "https://sveaflet-markercluster.vercel.app/",
+	"license": "MIT",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "vite build && npm run package",
+		"preview": "vite preview",
+		"package": "svelte-kit sync && svelte-package && publint",
+		"prepublishOnly": "npm run package",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"package:publish": "npm publish"
+	},
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"leaflet",
+		"leatlet.markercluster",
+		"markercluster",
+		"MarkerCluster"
+	],
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/GrayFrost/sveaflet-markercluster.git"
+	},
+	"engines": {
+		"node": ">=20.12.0"
+	},
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js"
+		}
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*"
+	],
+	"peerDependencies": {
+		"svelte": "^4.0.0"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^3.0.0",
+		"@sveltejs/adapter-vercel": "^5.3.2",
+		"@sveltejs/kit": "^2.0.0",
+		"@sveltejs/package": "^2.0.0",
+		"@sveltejs/vite-plugin-svelte": "^3.0.0",
+		"@types/eslint": "^8.56.7",
+		"@types/leaflet": "^1.9.12",
+		"@types/leaflet.markercluster": "^1.5.4",
+		"@types/node": "^20.14.9",
+		"autoprefixer": "^10.4.19",
+		"eslint": "^9.0.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-svelte": "^2.36.0",
+		"flowbite": "^2.4.1",
+		"flowbite-svelte": "^0.46.13",
+		"flowbite-svelte-icons": "^1.6.1",
+		"globals": "^15.0.0",
+		"leaflet": "^1.9.4",
+		"mdsvex": "^0.11.2",
+		"mdsvexamples": "^0.4.1",
+		"postcss": "^8.4.38",
+		"prettier": "^3.1.1",
+		"prettier-plugin-svelte": "^3.1.2",
+		"prettier-plugin-tailwindcss": "^0.6.4",
+		"publint": "^0.1.9",
+		"sveaflet": "^0.0.5",
+		"svelte": "^4.2.7",
+		"svelte-check": "^3.6.0",
+		"tailwindcss": "^3.4.4",
+		"tslib": "^2.4.1",
+		"typescript": "^5.0.0",
+		"typescript-eslint": "^8.0.0-alpha.20",
+		"vite": "^5.0.11"
+	},
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"type": "module",
+	"dependencies": {
+		"leaflet.markercluster": "^1.5.3"
+	}
+}
