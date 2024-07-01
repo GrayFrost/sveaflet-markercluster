@@ -1,12 +1,15 @@
-<script>
+<script lang="ts">
   import { onMount, onDestroy, getContext, setContext } from "svelte";
-  import { Map } from "leaflet";
-  import { MarkerClusterGroup } from "leaflet.markercluster";
+  import 'leaflet.markercluster';
+  import { Map, MarkerClusterGroup } from "leaflet";
+  import type { LeafletContextInterface } from 'sveaflet';
+  import 'leaflet.markercluster/dist/MarkerCluster.css';
+  import 'leaflet.markercluster/dist/MarkerCluster.Default.css';
 
-  let markerCluster;
-
-  let parentContext = getContext(Map);
+  let parentContext = getContext<LeafletContextInterface>(Map);
   const { getMap } = parentContext;
+
+  let markerCluster: MarkerClusterGroup | undefined;
   let ready = false;
 
   $: map = getMap();
