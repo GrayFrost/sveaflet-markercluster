@@ -7,6 +7,8 @@ dir: pages
 description: Quick start to Sveaflet-MarkerCluster
 ---
 
+This documentation assumes you are already familiar with Svelte and have a project setup. If it is not the case, you should read Svelte's [Getting Started documentation](https://learn.svelte.dev/tutorial/welcome-to-svelte) first.
+
 ## Quick Start
 
 ```bash
