@@ -85,7 +85,7 @@ description: Marker Clustering Custom
       }}
     >
       {#each arr as i}
-        <Marker latlng={getRandomLatLng(map)} options={{
+        <Marker latLng={getRandomLatLng(map)} options={{
           title: i
         }} />
       {/each}

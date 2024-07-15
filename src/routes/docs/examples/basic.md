@@ -31,7 +31,7 @@ description: Examples about how to use Sveaflet-MarkerCluster
 			{#each addressPoints as a}
 				{@const title = String(a[2])}
 				<Marker
-					latlng={[Number(a[0]), Number(a[1])]}
+					latLng={[Number(a[0]), Number(a[1])]}
 					options={{
 						title,
 					}}
@@ -74,7 +74,7 @@ description: Examples about how to use Sveaflet-MarkerCluster
 			{#each addressPoints as a}
 				{@const title = String(a[2])}
 				<Marker
-					latlng={[Number(a[0]), Number(a[1])]}
+					latLng={[Number(a[0]), Number(a[1])]}
 					options={{
 						title,
 					}}
