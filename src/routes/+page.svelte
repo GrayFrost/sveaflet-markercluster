@@ -9,11 +9,13 @@
   import { addressPoints } from "../routes/docs/assets/realword.388";
 
   let logo = "/images/sveaflet.png";
-  let marker: MarkerType;
+  let marker: MarkerType | undefined = $state();
 
-  $: if (marker) {
-    marker.openPopup();
-  }
+	$effect(() => {
+		if (marker) {
+			marker.openPopup();
+		}
+	});
 
   let title = "Sveaflet-MarkerCluster - A plugin of Sveaflet";
   let description =

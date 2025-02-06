@@ -17,10 +17,9 @@ description: Marker Clustering Custom
 
   const arr = Array.from({length: 100}).map((_, i) => i);
 
-  let map;
-  let markerCluster;
-  let shownLayer;
-  let polygonLatLngs;
+  let map = $state();
+  let shownLayer = $state(null);
+  let polygonLatLngs = $state(null);
 
   function getRandomLatLng(map) {
     const bounds = map.getBounds();
@@ -44,22 +43,20 @@ description: Marker Clustering Custom
     }
   }
 
-  $: if (map) {
-    if (markerCluster) {
-      markerCluster.on('clustermouseover', function(a) {
-        removePolygon();
-        a.layer.setOpacity(0.2);
-        shownLayer = a.layer;
-        polygonLatLngs = a.layer.getConvexHull();
-      });
-      markerCluster.on('clustermouseout', removePolygon);
-      map.on('zoomend', removePolygon);
-    }
+  function onClusterMouseOver(a) {
+    removePolygon();
+    a.layer.setOpacity(0.2);
+    shownLayer = a.layer;
+    polygonLatLngs = a.layer.getConvexHull();
   }
 </script>
 
 <div style="width:100%;height:500px;">
-	<Map options={{ center: [50.5, 30.51], zoom: 15 }} bind:instance={map}>
+	<Map
+    options={{ center: [50.5, 30.51], zoom: 15 }}
+    onzoomend={removePolygon}
+    bind:instance={map}
+  >
     <TileLayer
 			url={'https://tile.openstreetmap.org/{z}/{x}/{y}.png'}
 			options={{
@@ -68,7 +65,6 @@ description: Marker Clustering Custom
 			}}
 		/>
     <MarkerCluster
-      bind:instance={markerCluster}
       options={{
         maxClusterRadius: 120,
         spiderfyOnMaxZoom: false,
@@ -83,6 +79,8 @@ description: Marker Clustering Custom
           return divIcon({ html: n, className: 'mycluster', iconSize: point(40, 40) })
         }
       }}
+      onclustermouseover={onClusterMouseOver}
+      onclustermouseout={removePolygon}
     >
       {#each arr as i}
         <Marker latLng={getRandomLatLng(map)} options={{

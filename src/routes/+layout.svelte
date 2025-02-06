@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { page } from '$app/stores';
 	import {
 		DarkMode,
 		Navbar,
@@ -14,14 +13,19 @@
 	import { writable, type Writable } from 'svelte/store';
 	import GitHub from './utils/icons/GitHub.svelte';
 	import DocBadge from './utils/DocBadge.svelte';
-	import { navigating } from '$app/stores';
+	import { navigating, page } from '$app/state';
 
 	import '../app.css';
 
-	let isHomePage: boolean;
-	$: isHomePage = $page.route.id === '/';
+	interface Props {
+		children?: Snippet;
+	}
+
+	let { children }: Props = $props();
+
+	let isHomePage: boolean = $derived(page.route.id === '/');
 	const version = __VERSION__;
-	$: activeUrl = $page.url.pathname;
+	let activeUrl = $derived(page.url.pathname);
 	let divClass = 'w-full ms-auto lg:block lg:w-auto order-1 lg:order-none';
 	let ulClass =
 		'flex flex-col py-3 my-4 lg:flex-row lg:my-0 text-sm font-medium text-gray-900 dark:text-gray-300 gap-4';
@@ -43,7 +47,7 @@
 		class="h-15 py-0 flex items-center {isHomePage ? 'lg:px-0 max-w-7xl mx-auto' : ''}"
 		let:toggle
 	>
-		<span hidden={$page.route.id === '/'}>
+		<span hidden={page.route.id === '/'}>
 			<NavHamburger onClick={toggleDrawer} class="m-0 me-3 md:block lg:hidden" />
 		</span>
 		<NavBrand href="/" class="relative">
